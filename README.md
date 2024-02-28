@@ -59,7 +59,7 @@
 # [Глава 2. Разработка программы](#_toc105096023)
 
 # [Глава 3. Тестирование программы](#_toc105096058)
-
+# [Заключение]()
 
 
 
@@ -459,11 +459,11 @@ C ++ - это статически типизированный, скомпил�
 
 
 
-Заключение
+# <a name="_toc105095958"></a>Заключение
 
-`	`В ходе выполнения курсовой работы были изучены теоретические материалы, а также различные пособия и статьи. Произведена большая работа, которая привела к расширению знаний в области графов и их программирования. Было создано, и протестировано программное обеспечение, с возможностью дальнейшего улучшения.
+В ходе выполнения курсовой работы были изучены теоретические материалы, а также различные пособия и статьи. Произведена большая работа, которая привела к расширению знаний в области графов и их программирования. Было создано, и протестировано программное обеспечение, с возможностью дальнейшего улучшения.
 
-`	`Были выполнены следующие задачи:
+Были выполнены следующие задачи:
 
 1. Была изучена различная литература по теме курсовой работы.
 1. Были описаны понятия и особенности представленной программы.
@@ -475,7 +475,7 @@ C ++ - это статически типизированный, скомпил�
 
 
 
-Литература
+# Литература
 
 - Белов В. В., Воробьев Е. М., Шаталов В. Е. - Теория графов. — М.: Высш. школа, 1976. — С. 392.
 - Положение о курсовых работах (проектах) в федеральном государственном бюджетном образовательном учреждении высшего образования «Российский экономический университет имени Г.В. Плеханова» Дата утверждения 29 октября 2019 г., Протокол Методического совета № 13.
@@ -483,535 +483,284 @@ C ++ - это статически типизированный, скомпил�
 - Герб Саттер, Андрей Александреску. Стандарты программирования на C++. 101 правило и рекомендация. Перевод с английского — Издательский дом «Вильямс», 2005 г. 224 с.
 
 
-Приложение
+# Приложение
 
+``` c++
 #include <iostream>
-
 using namespace std;
-
 #include<string>
-
 #include <cstdlib>
-
 #include<windows.h>
 
 //структура дерева
-
 struct Branch {
-
-`    `int Age;
-
-`    `int number\_of\_room;
-
-`    `string Name;
-
-`    `string surname;
-
-`    `Branch\* leftBranch;
-
-`    `Branch\* rightBranch;
-
+    int Age;
+    int number_of_room;
+    string Name;
+    string surname;
+    Branch* leftBranch;
+    Branch* rightBranch;
 };
 
 int menu() {
-
-`     `cout << "1.Записать нового клиента!" << endl;
-
-`     `cout << "2.Вывести список клиентов!" << endl;
-
-`     `cout << "3.Удалить всех клиентов в гостинице!" << endl;
-
-`     `cout << "4.Вот и настал этот день,кто-то получит приз.Нужно лишь узнать кто это." << endl;
-
-`     `cout << "5.Выход" << endl;
-
-`     `int x;
-
-`     `cin >> x;
-
-`     `//cout << endl;
-
-`     `return x;
-
+     cout << "1.Записать нового клиента!" << endl;
+     cout << "2.Вывести список клиентов!" << endl;
+     cout << "3.Удалить всех клиентов в гостинице!" << endl;
+     cout << "4.Вот и настал этот день,кто-то получит приз.Нужно лишь узнать кто это." << endl;
+     cout << "5.Выход" << endl;
+     int x;
+     cin >> x;
+     //cout << endl;
+     return x;
 }
 
 
-void add\_elem(int age\_1, int number\_of\_room\_1, string name\_1,string surname\_1, Branch\* aBranch) {
-
-
-
-`    `if (age\_1 == aBranch->Age) {
-
-`            `Branch\* tree = new Branch;
-
-`            `Branch\* tmp = aBranch->rightBranch;
-
-`            `tree->Age = age\_1;
-
-`            `tree->Name = name\_1;
-
-`            `tree->surname = surname\_1;
-
-`            `tree->number\_of\_room = number\_of\_room\_1;
-
-`            `tree->rightBranch = aBranch->rightBranch;
-
-`            `aBranch->rightBranch = tree;
-
-`            `tree->leftBranch = NULL;
-
-`            `cout << "Клиент записан!" << endl;
-
-`    `}
-
-
-
-`    `if (age\_1 > aBranch->Age){
-
-
-
-`        `if (aBranch->rightBranch == NULL) {
-
-`            `Branch\* tree = new Branch;
-
-`            `tree->Age = age\_1;
-
-`            `tree->Name = name\_1;
-
-`            `tree->surname = surname\_1;
-
-`            `tree->number\_of\_room = number\_of\_room\_1;
-
-`            `tree->rightBranch = NULL;
-
-`            `aBranch->rightBranch = tree;
-
-`            `tree->leftBranch = NULL;
-
-`            `cout << "Клиент записан!" << endl;
-
-`        `}
-
-`        `else {
-
-`            `add\_elem(age\_1, number\_of\_room\_1, name\_1, surname\_1, aBranch->rightBranch);
-
-
-
-`        `}
-
-`    `}
-
-`    `else if (age\_1 < aBranch->Age) {
-
-`        `if (aBranch->leftBranch == NULL) {
-
-`            `Branch\* tree = new Branch;
-
-`            `tree->Age = age\_1;
-
-`            `tree->Name = name\_1;
-
-`            `tree->surname = surname\_1;
-
-`            `tree->number\_of\_room = number\_of\_room\_1;
-
-`            `tree->rightBranch = NULL;
-
-`            `tree->leftBranch = NULL;
-
-`            `aBranch->leftBranch = tree;
-
-`            `cout << "Клиент записан!" << endl;
-
-
-
-`        `}
-
-`        `else {
-
-`            `add\_elem(age\_1, number\_of\_room\_1, name\_1, surname\_1, aBranch->leftBranch);
-
-`        `}
-
-`    `}
-
-
-
+void add_elem(int age_1, int number_of_room_1, string name_1,string surname_1, Branch* aBranch) {
+    
+    if (age_1 == aBranch->Age) {
+            Branch* tree = new Branch;
+            Branch* tmp = aBranch->rightBranch;
+            tree->Age = age_1;
+            tree->Name = name_1;
+            tree->surname = surname_1;
+            tree->number_of_room = number_of_room_1;
+            tree->rightBranch = aBranch->rightBranch;
+            aBranch->rightBranch = tree;
+            tree->leftBranch = NULL;
+            cout << "Клиент записан!" << endl;
+    }
+    
+    if (age_1 > aBranch->Age){
+                              
+        if (aBranch->rightBranch == NULL) {
+            Branch* tree = new Branch;
+            tree->Age = age_1;
+            tree->Name = name_1;
+            tree->surname = surname_1;
+            tree->number_of_room = number_of_room_1;
+            tree->rightBranch = NULL;
+            aBranch->rightBranch = tree;
+            tree->leftBranch = NULL;
+            cout << "Клиент записан!" << endl;
+        }
+        else {
+            add_elem(age_1, number_of_room_1, name_1, surname_1, aBranch->rightBranch);
+            
+        }
+    }
+    else if (age_1 < aBranch->Age) {
+        if (aBranch->leftBranch == NULL) {
+            Branch* tree = new Branch;
+            tree->Age = age_1;
+            tree->Name = name_1;
+            tree->surname = surname_1;
+            tree->number_of_room = number_of_room_1;
+            tree->rightBranch = NULL;
+            tree->leftBranch = NULL;
+            aBranch->leftBranch = tree;
+            cout << "Клиент записан!" << endl;
+            
+        }
+        else {
+            add_elem(age_1, number_of_room_1, name_1, surname_1, aBranch->leftBranch);
+        }
+    }
+    
 }
 
 
-void print\_Tree(Branch\* aBranch) {
-
-
-
-`    `if (aBranch->leftBranch != NULL) print\_Tree(aBranch->leftBranch);
-
-`    `cout << "------------------" << endl;
-
-`    `cout << "Имя человека : " << aBranch->Name << endl;
-
-`    `cout << "Фамилия человека : " << aBranch->surname << endl;
-
-`    `cout << "Возраст человека : " << aBranch->Age << endl;
-
-`    `cout << "Номер комнаты человека : " << aBranch->number\_of\_room << endl;
-
-`    `cout << "------------------" << endl;
-
-`    `if (aBranch->rightBranch != NULL) print\_Tree(aBranch->rightBranch);
-
+void print_Tree(Branch* aBranch) {
+    
+    if (aBranch->leftBranch != NULL) print_Tree(aBranch->leftBranch);
+    cout << "------------------" << endl;
+    cout << "Имя человека : " << aBranch->Name << endl;
+    cout << "Фамилия человека : " << aBranch->surname << endl;
+    cout << "Возраст человека : " << aBranch->Age << endl;
+    cout << "Номер комнаты человека : " << aBranch->number_of_room << endl;
+    cout << "------------------" << endl;
+    if (aBranch->rightBranch != NULL) print_Tree(aBranch->rightBranch);
 }
 
 
-void deleteTree(Branch\* aBranch) {
-
-`    `if (aBranch->leftBranch != NULL) deleteTree(aBranch->leftBranch);
-
-`    `if (aBranch->rightBranch != NULL) deleteTree(aBranch->rightBranch);
-
-`    `delete aBranch;
-
+void deleteTree(Branch* aBranch) {
+    if (aBranch->leftBranch != NULL) deleteTree(aBranch->leftBranch);
+    if (aBranch->rightBranch != NULL) deleteTree(aBranch->rightBranch);
+    delete aBranch;
 }
 
-void poisk(int n, Branch\* aBranch , bool Flag) {
-
-`    `if (aBranch->Age == n) {
-
-`        `cout << "------------------" << endl;
-
-`        `cout << "Имя человека - " << aBranch->Name << endl;
-
-`        `cout << "Фамилия человека - " << aBranch->surname << endl;
-
-`        `cout << "Возраст человека - " << aBranch->Age << endl;
-
-`        `cout << "Номер комнаты человека - " << aBranch->number\_of\_room << endl;
-
-`        `cout << "------------------" << endl;
-
-`        `Flag = false;
-
-`        `if (aBranch->rightBranch != NULL) {
-
-`            `if (aBranch->rightBranch->Age == n) {
-
-`                `poisk(n, aBranch->rightBranch , Flag);
-
-`            `}
-
-`        `}
-
-`    `}
-
-`    `else if (n > aBranch->Age) {
-
-`        `if (aBranch->rightBranch == NULL) {
-
-`            `if (Flag == true) {
-
-`                `cout << "Таких людей с данном возрастом нет в гостинице :)" << endl;
-
-
-
-`            `}
-
-`        `}
-
-`        `else {
-
-`            `poisk(n, aBranch->rightBranch, Flag);
-
-`        `}
-
-`    `}
-
-`    `else if(n<aBranch->Age) {
-
-`        `if (aBranch->leftBranch == NULL) {
-
-`            `if (Flag == true) {
-
-`                `cout << "Таких людей с данном возрастом нет в гостинице :)" << endl;
-
-
-
-`            `}
-
-`        `}
-
-`        `else {
-
-`            `poisk(n, aBranch->leftBranch, Flag);
-
-`        `}
-
-
-
-`    `}
-
-
-
+void poisk(int n, Branch* aBranch , bool Flag) {
+    if (aBranch->Age == n) {
+        cout << "------------------" << endl;
+        cout << "Имя человека - " << aBranch->Name << endl;
+        cout << "Фамилия человека - " << aBranch->surname << endl;
+        cout << "Возраст человека - " << aBranch->Age << endl;
+        cout << "Номер комнаты человека - " << aBranch->number_of_room << endl;
+        cout << "------------------" << endl;
+        Flag = false;
+        if (aBranch->rightBranch != NULL) {
+            if (aBranch->rightBranch->Age == n) {
+                poisk(n, aBranch->rightBranch , Flag);
+            }
+        }
+    }
+    else if (n > aBranch->Age) {
+        if (aBranch->rightBranch == NULL) {
+            if (Flag == true) {
+                cout << "Таких людей с данном возрастом нет в гостинице :)" << endl;
+               
+            }
+        }
+        else {
+            poisk(n, aBranch->rightBranch, Flag);
+        }
+    }
+    else if(n<aBranch->Age) {
+        if (aBranch->leftBranch == NULL) {
+            if (Flag == true) {
+                cout << "Таких людей с данном возрастом нет в гостинице :)" << endl;
+                
+            }
+        }
+        else {
+            poisk(n, aBranch->leftBranch, Flag);
+        }
+        
+    }
+   
 }
-
 int main()
-
 {
-
-`    `SetConsoleCP(1251); 
-
-`    `SetConsoleOutputCP(1251);
-
-`    `//предположим что в гостинице могут жить люди с  возрастом от 10 до 100(так как программа не глобальная, то этот момент всегда можно подкорректировать)
-
-`    `srand(time(NULL)); //нужно для работы генератора случайных чисел
-
-`    `setlocale(LC\_ALL, "rus");
-
-`    `Branch\* aBranch = new Branch;
-
-`    `int age\_1, number\_of\_room\_1, p;
-
-`    `string name\_1, surname\_1;
-
-`    `int number\_of\_room\_2 = 1;
-
-`    `while (true) {
-
-`        `cout << "------------------" << endl;
-
-`        `cout << "Запишите первого клиента в гостиницу.Учитывайте что по правилам гостиницы, принимаются клиенты с возрастом от 10 до 100 лет.Чтобы это сделать нажмите 1: ";
-
-`        `int x;
-
-`        `cin >> x;
-
-`        `if (x == 1) {
-
-
-
-
-
-`            `cout << "Имя человека: ";
-
-`            `cin >> name\_1;
-
-`            `//cout << endl;
-
-`            `aBranch->Name = name\_1;
-
-`            `cout << "Фамилия человека: ";
-
-`            `cin >> surname\_1;
-
-`            `aBranch->surname = surname\_1;
-
-`            `//cout << endl;
-
-`            `cout << "Возраст человека: ";
-
-`            `cin >> age\_1;
-
-`            `while (true) {
-
-`                `if (age\_1 >= 10 && age\_1 <= 100) break;
-
-`                `else {
-
-`                    `cout << "Вы ввели неккоректный возраст(возраст должен быть от 10 до 100 лет включительно).Возраст человека: ";
-
-`                    `cin >> age\_1;
-
-`                `}
-
-`            `}
-
-`            `aBranch->Age = age\_1;
-
-`            `aBranch->surname = surname\_1;
-
-`            `cout << "Данному человеку достаётся комната номер " << number\_of\_room\_2 << endl;
-
-`            `aBranch->number\_of\_room = number\_of\_room\_2;
-
-`            `number\_of\_room\_2++;
-
-`            `aBranch->leftBranch = NULL;
-
-`            `aBranch->rightBranch = NULL;
-
-`            `cout << "Клиент записан!\n";
-
-`            `cout << "------------------" << endl;
-
-`            `break;
-
-`        `}
-
-`    `}
-
-
-
-`    `cout << "Функционал программы : " << endl;
-
-`    `while (true) {
-
-`        `switch (menu()) {
-
-`        `case 1:
-
-`            `cout << "------------------" << endl;
-
-`            `cout << "Имя человека: ";
-
-`            `cin >> name\_1;
-
-`            `cout << "Фамилия человека: ";
-
-`            `cin >> surname\_1;
-
-`            `cout << "Возраст человека: ";
-
-`            `cin >> age\_1;
-
-`            `while (true) {
-
-`                `if (age\_1 >= 10 && age\_1 <= 100) break;
-
-`                `else {
-
-`                    `cout << "Вы ввели неккоректный возраст(возраст должен быть от 10 до 100 лет включительно).Возраст человека: ";
-
-`                    `cin >> age\_1;
-
-`                `}
-
-`            `}
-
-`            `cout << "Данному человеку достаётся комната номер " << number\_of\_room\_2 << endl;
-
-`            `add\_elem(age\_1, number\_of\_room\_2, name\_1, surname\_1, aBranch);
-
-`            `cout << "------------------" << endl;
-
-`            `number\_of\_room\_2++;
-
-`            `break;
-
-`        `case 2:
-
-`            `print\_Tree(aBranch);
-
-`            `break;
-
-`        `case 3:
-
-`            `deleteTree(aBranch);
-
-`            `number\_of\_room\_2 = 1;
-
-`            `aBranch = new Branch;
-
-`            `while (true) {
-
-`                `cout << "------------------" << endl;
-
-`                `cout << "Вы удалили всех клиентов из базы данных.Чтобы снова добавить нового клиента и создать базу данных нажмите 1 : ";
-
-`                `int x;
-
-`                `cin >> x;
-
-`                `if (x == 1) {
-
-`                    `cout << "Имя человека: ";
-
-`                    `cin >> name\_1;
-
-`                    `aBranch->Name = name\_1;
-
-`                    `cout << "Фамилия человека: ";
-
-`                    `cin >> surname\_1;
-
-`                    `aBranch->surname = surname\_1;
-
-`                    `//cout << endl
-
-`                    `cout << "Возраст человека: ";
-
-`                    `cin >> age\_1;
-
-`                    `while (true) {
-
-`                        `if (age\_1 >= 10 && age\_1 <= 100) break;
-
-`                        `else {
-
-`                            `cout << "Вы ввели неккоректный возраст(возраст должен быть от 10 до 100 лет включительно).Возраст человека: ";
-
-`                            `cin >> age\_1;
-
-`                        `}
-
-`                    `}
-
-`                    `aBranch->Age = age\_1;
-
-`                    `aBranch->surname = surname\_1;
-
-`                    `cout << "Данному человеку достаётся комната номер " << number\_of\_room\_2 << endl;
-
-`                    `aBranch->number\_of\_room = number\_of\_room\_2;
-
-`                    `number\_of\_room\_2++;
-
-`                    `cout << "Клиент записан!" << endl;
-
-`                    `cout << "------------------" << endl;
-
-`                    `aBranch->leftBranch = NULL;
-
-`                    `aBranch->rightBranch = NULL;
-
-`                    `break;
-
-`                `}
-
-`            `}
-
-`            `break;
-
-`        `case 4:
-
-`            `cout << "------------------" << endl;
-
-`            `p = 10+rand()%91;
-
-`            `cout << "На повестке дня выпало число - " << p << endl;
-
-`            `cout << "Сейчас найдём есть ли в нашей гостнице люди с таким возрастом" << endl;
-
-`            `cout << "Выполняется поиск...." << endl;
-
-`            `cout << "Победители конкурса на бесплатное питание : " << endl;
-
-`            `poisk(p, aBranch, true);
-
-`            `cout << "------------------" << endl;
-
-`            `break;
-
-`        `case 5:
-
-`            `return 0;
-
-`        `}
-
-`    `}
-
+    SetConsoleCP(1251); 
+    SetConsoleOutputCP(1251);
+    //предположим что в гостинице могут жить люди с  возрастом от 10 до 100(так как программа не глобальная, то этот момент всегда можно подкорректировать)
+    srand(time(NULL)); //нужно для работы генератора случайных чисел
+
+    setlocale(LC_ALL, "rus");
+    Branch* aBranch = new Branch;
+    int age_1, number_of_room_1, p;
+    string name_1, surname_1;
+    int number_of_room_2 = 1;
+    while (true) {
+        cout << "------------------" << endl;
+        cout << "Запишите первого клиента в гостиницу.Учитывайте что по правилам гостиницы, принимаются клиенты с возрастом от 10 до 100 лет.Чтобы это сделать нажмите 1: ";
+        int x;
+        cin >> x;
+        if (x == 1) {
+            
+            
+            cout << "Имя человека: ";
+            cin >> name_1;
+            //cout << endl;
+            aBranch->Name = name_1;
+            cout << "Фамилия человека: ";
+            cin >> surname_1;
+            aBranch->surname = surname_1;
+            //cout << endl;
+            cout << "Возраст человека: ";
+            cin >> age_1;
+            while (true) {
+                if (age_1 >= 10 && age_1 <= 100) break;
+                else {
+                    cout << "Вы ввели неккоректный возраст(возраст должен быть от 10 до 100 лет включительно).Возраст человека: ";
+                    cin >> age_1;
+                }
+            }
+            aBranch->Age = age_1;
+            aBranch->surname = surname_1;
+            cout << "Данному человеку достаётся комната номер " << number_of_room_2 << endl;
+            aBranch->number_of_room = number_of_room_2;
+            number_of_room_2++;
+            aBranch->leftBranch = NULL;
+            aBranch->rightBranch = NULL;
+            cout << "Клиент записан!\n";
+            cout << "------------------" << endl;
+            break;
+        }
+    }
+    
+    cout << "Функционал программы : " << endl;
+    while (true) {
+        switch (menu()) {
+        case 1:
+            cout << "------------------" << endl;
+            cout << "Имя человека: ";
+            cin >> name_1;
+            cout << "Фамилия человека: ";
+            cin >> surname_1;
+            cout << "Возраст человека: ";
+            cin >> age_1;
+            while (true) {
+                if (age_1 >= 10 && age_1 <= 100) break;
+                else {
+                    cout << "Вы ввели неккоректный возраст(возраст должен быть от 10 до 100 лет включительно).Возраст человека: ";
+                    cin >> age_1;
+                }
+            }
+            cout << "Данному человеку достаётся комната номер " << number_of_room_2 << endl;
+            add_elem(age_1, number_of_room_2, name_1, surname_1, aBranch);
+            cout << "------------------" << endl;
+            number_of_room_2++;
+            break;
+        case 2:
+            print_Tree(aBranch);
+            break;
+        case 3:
+            deleteTree(aBranch);
+            number_of_room_2 = 1;
+            aBranch = new Branch;
+            while (true) {
+                cout << "------------------" << endl;
+                cout << "Вы удалили всех клиентов из базы данных.Чтобы снова добавить нового клиента и создать базу данных нажмите 1 : ";
+                int x;
+                cin >> x;
+                if (x == 1) {
+                    cout << "Имя человека: ";
+                    cin >> name_1;
+                    aBranch->Name = name_1;
+                    cout << "Фамилия человека: ";
+                    cin >> surname_1;
+                    aBranch->surname = surname_1;
+                    //cout << endl
+                    cout << "Возраст человека: ";
+                    cin >> age_1;
+                    while (true) {
+                        if (age_1 >= 10 && age_1 <= 100) break;
+                        else {
+                            cout << "Вы ввели неккоректный возраст(возраст должен быть от 10 до 100 лет включительно).Возраст человека: ";
+                            cin >> age_1;
+                        }
+                    }
+                    aBranch->Age = age_1;
+                    aBranch->surname = surname_1;
+                    cout << "Данному человеку достаётся комната номер " << number_of_room_2 << endl;
+                    aBranch->number_of_room = number_of_room_2;
+                    number_of_room_2++;
+                    cout << "Клиент записан!" << endl;
+                    cout << "------------------" << endl;
+                    aBranch->leftBranch = NULL;
+                    aBranch->rightBranch = NULL;
+                    break;
+                }
+            }
+            break;
+        case 4:
+            cout << "------------------" << endl;
+            p = 10+rand()%91;
+            cout << "На повестке дня выпало число - " << p << endl;
+            cout << "Сейчас найдём есть ли в нашей гостнице люди с таким возрастом" << endl;
+            cout << "Выполняется поиск...." << endl;
+            cout << "Победители конкурса на бесплатное питание : " << endl;
+            poisk(p, aBranch, true);
+            cout << "------------------" << endl;
+            break;
+        case 5:
+            return 0;
+        }
+    }
 }
 
+```
 
 
-11
+
+
